@@ -1,4 +1,4 @@
-library(building)
+library(socsci)
 library(car)
 library(haven)
 
@@ -10,6 +10,10 @@ cces %>%
   filter(pew_bornagain_12 ==1) %>% 
   filter(pew_bornagain_14 ==1) %>% 
   count(wt = weight) #2835
+
+cces %>% 
+  filter(pew_bornagain_10 ==1 & pew_bornagain_12 ==1 & pew_bornagain_14 ==1) %>% 
+  count(wt = weight)
 
 cces %>% 
   filter(pew_bornagain_10 !=1) %>% 
@@ -54,7 +58,7 @@ cces %>%
   count(wt = weight) #86
 
 
-### Voter Project
+### Voter Project ####
 
 vp %>% 
   filter(pew_bornagain_baseline ==1) %>% 

@@ -37,7 +37,7 @@ all1 <- ggplot(df, aes(x = variable, stratum = value, alluvium = caseid, fill = 
   scale_color_manual(values = c("cornflowerblue", "goldenrod")) +
   theme(plot.title = element_text(size = 64)) +
   labs(x = "Year", y = "Number of Respondents", title = "How Do People Change Their Born Again Status?", caption = "Data: CCES Panel (2010-2014)") +
-  ggsave("D://born_again/cces_alluvial.png") 
+  ggsave("D://born_again/cces_alluvial_full.png") 
 
 ## Voter Project ####
 
@@ -83,9 +83,9 @@ all2 <- ggplot(df, aes(x = variable, stratum = value, alluvium = caseid, fill = 
   scale_color_manual(values = c("cornflowerblue", "goldenrod")) +
   theme(plot.title = element_text(size = 44)) +
   labs(x = "Year", y = "Number of Respondents", title = "", caption = "Data: Voter Study Group (2012-2017)") +
-  ggsave("D://born_again/vp_alluvial.png") 
+  ggsave("D://born_again/vp_alluvial_full.png") 
 
 
 plot <- all1 + all2
 
-ggsave("D://born_again/patch_all.png", plot, width =10)
+ggsave("D://born_again/patch_all_full.png", plot, width =10)

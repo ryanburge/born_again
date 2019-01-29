@@ -2,6 +2,7 @@ library(socsci)
 library(car)
 library(haven)
 
+source("D://theme.R")
 vp <- read_dta("voter.dta")
 cces <- read_dta("cces_panel.dta")
 

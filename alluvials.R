@@ -32,10 +32,10 @@ all1 <- ggplot(df, aes(x = variable, stratum = value, alluvium = caseid, fill = 
   geom_flow(stat = "alluvium", lode.guidance = "leftright") +
   geom_stratum() +
   theme_gg("Quicksand") +
-  geom_label(fill = "white", stat = "stratum", size = 10, colour = "black", family = "font") +
+  geom_label(fill = "white", stat = "stratum", size = 4, colour = "black", family = "font") +
   scale_fill_manual(values = c("cornflowerblue", "goldenrod")) +
   scale_color_manual(values = c("cornflowerblue", "goldenrod")) +
-  theme(plot.title = element_text(size = 64)) +
+  theme(plot.title = element_text(size = 20)) +
   labs(x = "Year", y = "Number of Respondents", title = "How Do People Change Their Born Again Status?", caption = "Data: CCES Panel (2010-2014)") +
   ggsave("D://born_again/cces_alluvial_full.png") 
 
@@ -48,8 +48,8 @@ vp <- vp %>%
   mutate(reborn = reborn12 + reborn16 + reborn17) %>% 
   rename(caseid = case_identifier)
 
-test1 <- vp %>% 
-  filter(reborn == 3 | reborn == 0) 
+# test1 <- vp %>% 
+#   filter(reborn == 3 | reborn == 0) 
 
 vp1 <- vp %>% 
   filter(reborn != "NA")
@@ -59,7 +59,7 @@ small <- anti_join(vp1, test1)
 small <- small %>% 
   filter(reborn != "NA")
 
-small <- small %>% 
+small <- vp1 %>% 
   select(caseid, reborn12, reborn16, reborn17)
 
 
@@ -67,7 +67,7 @@ df <- melt(small, id = c("caseid")) %>% arrange(caseid)
 
 
 df <- df %>% 
-  mutate(variable = car::recode(variable, "'reborn12'= '2012'; 'reborn16'= '2016'; 'reborn17'= '2017'"))
+  mutate(variable = car::recode(variable, "'reborn12'= '2011'; 'reborn16'= '2016'; 'reborn17'= '2017'"))
 
 df <- df %>% 
   mutate(value = car::recode(value, " 1= 'Born Again'; 0= 'Not Born Again'")) %>% 
@@ -78,14 +78,14 @@ all2 <- ggplot(df, aes(x = variable, stratum = value, alluvium = caseid, fill = 
   geom_flow(stat = "alluvium", lode.guidance = "leftright") +
   geom_stratum() +
   theme_gg("Quicksand") +
-  geom_label(fill = "white", stat = "stratum", size = 10, colour = "black", family = "font") +
+  geom_label(fill = "white", stat = "stratum", size = 4, colour = "black", family = "font") +
   scale_fill_manual(values = c("cornflowerblue", "goldenrod")) +
   scale_color_manual(values = c("cornflowerblue", "goldenrod")) +
   theme(plot.title = element_text(size = 44)) +
-  labs(x = "Year", y = "Number of Respondents", title = "", caption = "Data: Voter Study Group (2012-2017)") +
+  labs(x = "Year", y = "Number of Respondents", title = "", caption = "Data: Voter Study Group (2011-2017)") +
   ggsave("D://born_again/vp_alluvial_full.png") 
 
 
 plot <- all1 + all2
 
-ggsave("D://born_again/patch_all_full.png", plot, width =10)
+ggsave("D://born_again/patch_all_full2.png", plot, width =10)
